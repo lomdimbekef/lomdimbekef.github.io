@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#0a0420">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="לומדים בכיף">
+<title>לומדים בכיף</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/favicon.png">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800;900&family=Noto+Sans+Hebrew:wght@500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div class="blobs"><i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <radialGradient id="mg" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#fff07a"/><stop offset=".55" stop-color="#ffb000"/><stop offset="1" stop-color="#ff5e3a"/></radialGradient>
+  <symbol id="nitzotz" viewBox="0 0 120 130">
+    <path d="M60 4 L64 16 L76 16 L66 23 L70 35 L60 28 L50 35 L54 23 L44 16 L56 16Z" fill="#fff07a" stroke="#ff8a00" stroke-width="2"/>
+    <path d="M60 30 C96 30 114 56 112 84 C110 112 88 126 60 126 C32 126 10 112 8 84 C6 56 24 30 60 30Z" fill="url(#mg)"/>
+    <ellipse cx="38" cy="58" rx="10" ry="6" fill="#fff" opacity=".45"/>
+    <g><ellipse cx="44" cy="76" rx="11" ry="13" fill="#fff"><animate attributeName="ry" values="13;13;1.5;13" keyTimes="0;.92;.96;1" dur="4s" repeatCount="indefinite"/></ellipse><circle cx="46" cy="79" r="6.5" fill="#1a0b3d"><animate attributeName="r" values="6.5;6.5;0;6.5" keyTimes="0;.92;.96;1" dur="4s" repeatCount="indefinite"/></circle><circle cx="48" cy="76" r="2.2" fill="#fff"><animate attributeName="r" values="2.2;2.2;0;2.2" keyTimes="0;.92;.96;1" dur="4s" repeatCount="indefinite"/></circle></g>
+    <g><ellipse cx="76" cy="76" rx="11" ry="13" fill="#fff"><animate attributeName="ry" values="13;13;1.5;13" keyTimes="0;.92;.96;1" dur="4s" repeatCount="indefinite"/></ellipse><circle cx="78" cy="79" r="6.5" fill="#1a0b3d"><animate attributeName="r" values="6.5;6.5;0;6.5" keyTimes="0;.92;.96;1" dur="4s" repeatCount="indefinite"/></circle><circle cx="80" cy="76" r="2.2" fill="#fff"><animate attributeName="r" values="2.2;2.2;0;2.2" keyTimes="0;.92;.96;1" dur="4s" repeatCount="indefinite"/></circle></g>
+    <ellipse cx="30" cy="96" rx="8" ry="5" fill="#ff2d95" opacity=".55"/><ellipse cx="90" cy="96" rx="8" ry="5" fill="#ff2d95" opacity=".55"/>
+    <path d="M48 100 Q60 112 72 100" stroke="#1a0b3d" stroke-width="4" fill="#ff5277" stroke-linecap="round"/>
+  </symbol>
+</defs></svg>
+<div class="demo-pill">🧪 מצב ניסיון · לא נשמר</div>
+<main id="app"></main>
+<div id="sheetBg" class="sheet-bg"></div>
+<div id="sheet" class="sheet" role="dialog"></div>
+<div id="toast" class="toast"></div>
+<script>/* אם הדפדפן חוסם שמירה (למשל בתוך מסגרת של אתר אחר, בעמדת הבדיקה): שומרים בזיכרון בלבד */
+(() => { let ok = true; try { const k = '__lbk'; localStorage.setItem(k, '1'); localStorage.removeItem(k); } catch (e) { ok = false; }
+  if (ok) return; const m = {};
+  const api = { getItem: k => (k in m ? m[k] : null), setItem: (k, v) => { m[k] = String(v); }, removeItem: k => { delete m[k]; }, clear: () => { for (const k in m) delete m[k]; }, key: i => Object.keys(m)[i] ?? null, get length() { return Object.keys(m).length; } };
+  try { Object.defineProperty(window, 'localStorage', { value: api, configurable: true }); } catch (e) { } })();</script>
+<script>/* רשת ביטחון: אם משהו קורס בשניות הראשונות (למשל בדיוק ברגע של עדכון), טוענים פעם אחת מחדש */
+addEventListener('error', function () { try { if (performance.now() < 8000 && !sessionStorage.getItem('lbk-reloaded')) { sessionStorage.setItem('lbk-reloaded', '1'); location.reload(); } } catch (e) { } });</script>
+<script src="js/core.js"></script>
+<script src="js/math.js"></script>
+<script src="js/bank.js"></script>
+<script src="js/little.js"></script>
+<script src="js/more.js"></script>
+<script src="js/math-more.js"></script>
+<script src="js/nature.js"></script>
+<script src="js/more-nature.js"></script>
+<script src="js/fun.js"></script>
+<script src="js/howto.js"></script>
+<script src="js/parent.js"></script>
+<script src="js/news.js"></script>
+<script src="js/demo.js"></script>
+<script src="js/review.js"></script>
+<script src="js/bdika.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/app.js"></script>
+<script type="module">import * as track from './js/track.js'; window.lbkTrack = track; if (!new URLSearchParams(location.search).has('bdika')) track.init({ app: 'lomdim', url: 'https://dmhxovlepdoobkoiyjhj.supabase.co', key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRtaHhvdmxlcGRvb2Jrb2l5amhqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIzNDUxNDIsImV4cCI6MjEwNzkyMTE0Mn0.qao1CRL1QWJhMnWsAaPXKt-WxbgySqIlH68iIdCYH1o' });</script>
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0420">
+<title>מדריך – לומדים בכיף</title>
+<link rel="icon" href="../icons/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0420;--card:rgba(255,255,255,.07);--line:rgba(255,255,255,.15);--mute:#cfc6f0;
+--g1:linear-gradient(135deg,#ff2d95,#ff8a00);--g2:linear-gradient(135deg,#8b3dff,#00d4ff);--g3:linear-gradient(135deg,#00e08a,#00b3ff);--g4:linear-gradient(135deg,#ffd23f,#ff5e3a);--g5:linear-gradient(135deg,#ff2d95,#8b3dff)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden}
+body{font-family:Rubik,system-ui,sans-serif;background:var(--bg);color:#fff;line-height:1.65;font-size:16px}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px}
+.blobs{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.blob{position:absolute;width:60vmax;height:60vmax;border-radius:50%;filter:blur(80px);opacity:.35;animation:float 18s ease-in-out infinite}
+.b1{background:#ff2d95;top:-20vmax;right:-20vmax}.b2{background:#8b3dff;bottom:-25vmax;left:-20vmax;animation-delay:-6s}
+@keyframes float{50%{transform:translate(5vmax,6vmax) scale(1.15)}}
+header{text-align:center;padding:40px 0 10px}
+.ic-big{font-size:70px;animation:hop 2.4s infinite;display:inline-block}
+@keyframes hop{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-12px) rotate(3deg)}}
+h1{font-size:clamp(32px,9vw,48px);font-weight:900;line-height:1.1}
+.grad{background:var(--g1);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--mute);font-size:17px;margin:10px 0}
+.back{display:inline-block;margin-top:14px;color:#fff;text-decoration:none;background:var(--g1);padding:11px 22px;border-radius:99px;font-weight:800}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0}
+.toc a{color:#fff;text-decoration:none;padding:7px 13px;border-radius:99px;background:var(--card);border:1px solid var(--line);font-weight:700;font-size:14px}
+section{padding:26px 0}
+h2{font-size:24px;font-weight:900;margin-bottom:12px;display:flex;gap:10px;align-items:center}
+h2 i{font-style:normal;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:24px;flex:0 0 46px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px;margin-bottom:12px}
+.steps{list-style:none;counter-reset:s;display:grid;gap:10px}
+.steps li{counter-increment:s;display:flex;gap:12px;align-items:flex-start}
+.steps li::before{content:counter(s);flex:0 0 30px;height:30px;border-radius:50%;background:var(--g3);display:grid;place-items:center;font-weight:900;font-size:15px}
+.games{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.game{border-radius:20px;padding:14px;box-shadow:0 10px 24px rgba(0,0,0,.3)}
+.game b{display:block;font-size:17px}.game em{font-style:normal;font-size:36px;display:block}
+.game p{font-size:14px;opacity:.95}
+.tip{display:block;background:rgba(255,210,63,.12);border-right:4px solid #ffd23f;border-radius:14px;padding:12px;margin-top:10px;font-size:15px}
+.mute{color:var(--mute)}
+.rv{opacity:0;transform:translateY(30px);transition:all .7s cubic-bezier(.2,.8,.2,1)}.rv.in{opacity:1;transform:none}
+footer{text-align:center;color:var(--mute);padding:30px 16px 60px;font-size:14px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+.new{display:inline-block;font-size:11px;font-weight:900;background:#ffd23f;color:#2a0a00;border-radius:8px;padding:1px 7px;vertical-align:middle;margin-right:4px}
+.go{display:block;text-align:center;max-width:440px;margin:22px auto;text-decoration:none;font-weight:800;font-size:22px;padding:18px 20px;border-radius:20px;background:var(--g1);color:#fff;box-shadow:0 10px 28px rgba(255,45,149,.4);border:2px solid rgba(255,255,255,.55)}
+.go small{display:block;font-weight:600;font-size:14px;opacity:.9;margin-top:2px}
+.gofab{position:fixed;bottom:calc(14px + env(safe-area-inset-bottom));left:50%;transform:translate(-50%,120px);z-index:50;padding:13px 24px;border-radius:999px;background:var(--g1);color:#fff;text-decoration:none;font-weight:800;font-size:17px;box-shadow:0 8px 24px rgba(0,0,0,.3);border:2px solid #fff;white-space:nowrap;transition:transform .3s}
+.gofab.on{transform:translate(-50%,0)}
+footer{padding-bottom:110px}
+</style>
+</head>
+<body>
+<div class="blobs"><i class="blob b1"></i><i class="blob b2"></i></div>
+<div class="wrap">
+<header>
+  <span class="ic-big">🌟</span>
+  <h1>מדריך <span class="grad">לומדים בכיף</span></h1>
+  <p class="lead">משחק לימוד שמכיר כל ילד ומתאים את עצמו אליו. כאן מוסבר איך משתמשים בכל דבר.</p>
+  <a class="go" href="../">🚀 כניסה לאפליקציה<small>כבר מותקן? לחצו כאן</small></a>
+  <nav class="toc"><a href="#start">התחלה</a><a href="#account">הרשמה</a><a href="#kids">ילדים</a><a href="#little">לקטנים</a><a href="#fun">כיף</a><a href="#math">חשבון</a><a href="#nature">טבע</a><a href="#parent">הורים</a><a href="#news">מה חדש</a><a href="#review">תיקונים</a><a href="#showcase">הדגמה</a><a href="#guide">המדריך האישי</a><a href="#device">בדיקת מכשיר</a><a href="#install">התקנה</a><a href="#soon">בקרוב</a></nav>
+</header>
+
+<section id="start" class="rv"><h2><i style="background:var(--g1)">🚀</i>התחלה מהירה</h2>
+  <div class="card"><ol class="steps">
+    <li><div>לוחצים על <b>➕ ילד חדש</b>.</div></li>
+    <li><div>נכנסים עם <b>קוד ההורה</b> או טביעת אצבע. זה <b>שער ההורים</b>, כדי שהילדים לא ישנו הגדרות בטעות.</div></li>
+    <li><div>ממלאים שם, גיל, בן או בת, כיתה, ובוחרים <b>צבעים</b>. אפשר להוסיף <b>עד 5 תמונות</b>, והן מתחלפות כל 2 שניות.</div></li>
+    <li><div>חוזרים למסך הראשי, והילד לוחץ על העיגול שלו. זהו, משחקים! 🎉</div></li>
+  </ol></div>
+</section>
+
+<section id="account" class="rv"><h2><i style="background:var(--g2)">🔐</i>הרשמה וקוד הורה <span class="new">חדש</span></h2>
+  <div class="card"><ol class="steps">
+    <li><div>בפתיחה הראשונה <b>ההורה נרשם</b> עם מייל וסיסמה. <b>כבר רשומים לכסף בכיף או לזמן בכיף?</b> לוחצים "כבר רשומים, כניסה" עם אותם פרטים.</div></li>
+    <li><div>בוחרים <b>קוד הורה</b> של 4 ספרות, ואם הטלפון תומך, גם <b>טביעת אצבע</b> או Face ID.</div></li>
+    <li><div>מעכשיו נכנסים לאזור ההורה עם הקוד או טביעת האצבע, <b>בלי תרגיל</b>. הילדים נכנסים למשחק כרגיל.</div></li>
+  </ol>
+    <p style="margin-top:10px"><b>🔑 שכחתי סיסמה:</b> במסך הכניסה כותבים מייל ולוחצים "שכחתי סיסמה". מגיע מייל עם קישור לבחירת סיסמה חדשה.</p>
+    <p style="margin-top:6px"><b>🔢 שכחתי את הקוד:</b> בחלון הקוד לוחצים "שכחתי את הקוד" ונכנסים עם הסיסמה של החשבון.</p>
+    <p style="margin-top:6px"><b>👤 שינויים:</b> באזור ההורה ← "החשבון וקוד ההורה": להחליף קוד, להוסיף או לבטל טביעת אצבע, או לצאת מהחשבון.</p>
+    <div class="tip">🔒 רק ההורה נרשם. השמות, התמונות וההתקדמות של הילדים נשארים רק בטלפון ולא נשלחים לשרת. מי שכבר שיחק לפני ההרשמה, שום דבר לא נמחק לו.</div></div>
+</section>
+
+<section id="howto" class="rv"><h2><i style="background:var(--g3)">🎓</i>איך משחקים? <span class="new">חדש</span></h2>
+  <div class="card"><p>בפעם הראשונה שילד נכנס למשחק, מופיע מסך קצר: <b>אצבע מראה על מה לוחצים</b>, וניצוץ מקריא את ההסבר. לוחצים <b>▶️ מתחילים</b>, או <b>⏭️ דילוג</b> למי שכבר יודע. רוצים לראות שוב? בכל משחק יש למעלה כפתור <b>🎬 הדגמה</b>.</p>
+    <div class="tip">🔍 ב"מצאו את ההבדלים" יש גם <b>סיבוב ניסיון</b>: שורה אחת בכל לוח והבדל אחד, ורק אז הלוח המלא.</div></div>
+</section>
+
+<section id="kidpage" class="rv"><h2><i style="background:var(--g4)">👤</i>הדף של כל ילד <span class="new">חדש</span></h2>
+  <div class="card"><p>באזור ההורה לוחצים על ילד, ונפתח <b>דף אחד שלו</b>: למעלה תמונות ופרטים, ולמטה <b>כל ההגדרות</b> (תרגילים, עד איזה מספר עם <b>+</b> ו־<b>−</b>, <b>📈 רמה בכל משחק</b>, מהירות, קריין וזמן מסך). בסוף הדף: המדריך האישי ומחיקה.</p>
+    <p style="margin-top:8px"><b>📈 רמה בכל משחק:</b> כל משחק חשיבה וזיכרון מתחיל ברמה לפי הגיל (1 עד 5), עולה לבד אחרי סבב טוב ויורד אחרי סבב קשה. אפשר לשנות ידנית בנקודות.</p>
+    <p style="margin-top:8px"><b>↩️ שחזור הגדרות ההתחלה:</b> בתחתית אזור ההורה. מחזיר את ההגדרות של כל הילדים להתחלה (תרגילים, רמות, מהירות, קריין, זמן מסך), עם אישור כפול. הילדים, התמונות, הכוכבים וההתקדמות נשארים.</p>
+    <div class="tip">📷 כשהילד לוחץ על העיגול שלו במסך הפתיחה, התמונה שלו גדלה לכל המסך לכמה שניות, עם כוכבים וקונפטי. נגיעה מדלגת.</div></div>
+</section>
+
+<section id="kids" class="rv"><h2><i style="background:var(--g5)">👧</i>כל ילד והעולם שלו</h2>
+  <div class="card">
+    <p>לכל ילד יש <b>צבעים משלו</b>, כוכבים ורמה, וההתקדמות שלו נשמרת בנפרד.</p>
+    <p style="margin-top:8px">ניצוץ <b>קורא לילד בשם</b>: "שָׁלוֹם נְתַנְאֵל!", ובערך בכל שבח שלישי גם "כָּל הַכָּבוֹד, יָעֵל!". מוסיפים ילד חדש? כותבים למוישי את השם, והוא מקליט אותו.</p>
+    <p style="margin-top:8px">הקריין <b>ניצוץ</b> פונה לבנות בלשון נקבה ("אַתְּ אַלּוּפָה!") ולבנים בלשון זכר ("אַתָּה אַלּוּף!"), לפי מה שבחרתם בפרופיל.</p>
+    <div class="tip">↩️ בכל מסך יש למעלה כפתור עגול וצבעוני <b>›</b> שמחזיר שלב אחד אחורה. גם כפתור "אחורה" של הטלפון עושה אותו דבר, ולא סוגר את המשחק.</div>
+    <div class="tip">💡 בכל מקום שיש 🔊 אפשר ללחוץ ולשמוע את המשפט שוב. כשניצוץ מדבר, הכפתור מהבהב.</div>
+    <div class="tip">🎙️ ניצוץ מדבר בקול טבעי, <b>לילי</b>, שמוקלט מראש. ככה הוא עובד <b>בכל טלפון</b>, גם אם אין בו קול עברי. בקרוב יתווספו עוד קריינים, בנים ובנות, וכל ילד יבחר את האהוב עליו: הורים ← ⚙️ הגדרות ← 🎙️ הקריין.</div>
+  </div>
+</section>
+
+<section id="little" class="rv"><h2><i style="background:var(--g3)">🧸</i>העולם של הקטנים (עד גיל 5)</h2>
+  <div class="card"><p>ילד שהגיל שלו מתחת ל־6 מקבל מסך משלו: <b>10 משחקים</b>, <b>תמונות אמיתיות</b>, כפתורים גדולים, וקריין שמקריא הכל. לא צריך לדעת לקרוא.</p>
+    <ul style="margin:8px 20px 0 0;display:grid;gap:6px">
+      <li>⏱️ כל משחק נמשך <b>5 דקות ברצף</b>. אם יש הגבלה של 10 דקות ביום, מספיקים שני משחקים.</li>
+      <li>🔀 <b>בלי חזרות:</b> בכל נושא יש עשרות שאלות, עד 100. כל ילד עובר על כולן בסדר משלו, וממשיך מאיפה שעצר. שאלה חוזרת רק אחרי שכל השאלות הופיעו. שאלה שהילד טעה בה חוזרת אחרי 3 שאלות. כבאית, אמבולנס, ניידת ואוטובוס עדיין מופיעים הרבה.</li>
+      <li>🖼️ לכל דבר יש <b>כמה תמונות שונות</b>, ובכל פעם מופיעה תמונה אחרת.</li>
+      <li>🎉 כל 5 תשובות יש חגיגה קטנה: ניצוץ רוקד, ויש כוכבים.</li>
+    </ul></div>
+  <div class="games">
+    <div class="game" style="background:var(--g3)"><em>🍎</em><b>פירות וירקות</b><p>חדש: "איפה הגזר?", "מה מהם צהוב?". 50 פירות וירקות, כל אחד בכמה תמונות.</p></div>
+    <div class="game" style="background:var(--g2)"><em>🦒</em><b>איפה החיה?</b><p>חדש: 80 חיות, ושאלות כמו "למי יש חדק?" ו"מי אומר מו?".</p></div>
+    <div class="game" style="background:var(--g1)"><em>🎨</em><b>צבעים</b><p>יותר מ־40 דברים מהעולם. התמונה אפורה, ומחכה לצבע הנכון.</p></div>
+    <div class="game" style="background:var(--g3)"><em>🏠</em><b>איפה גרים?</b><p>מי גר בקן? ואיפה גר הדולפין? 19 בתים ו־100 שאלות.</p></div>
+    <div class="game" style="background:var(--g2)"><em>☂️</em><b>מה צריך?</b><p>גשם ← מטריה, חושך ← פנס, קר בידיים ← כפפות, ועוד עשרות.</p></div>
+    <div class="game" style="background:var(--g4);color:#2a0a00"><em>🚒</em><b>מי נוסע? מי צריך?</b><p>איפה המחפר? מי מפנה את הזבל? מה צריך הטבח? ועוד כ־90 שאלות.</p></div>
+    <div class="game" style="background:var(--g5)"><em>🐣</em><b>אמא ותינוק</b><p>פרה ועגל, סוסה וסייח, ובשני הכיוונים: מי התינוק? ומי האמא?</p></div>
+    <div class="game" style="background:var(--g1)"><em>🍌</em><b>מה אוכלים?</b><p>קוף ובננה, פנדה ובמבוק, ומה נותנת לנו הפרה?</p></div>
+    <div class="game" style="background:var(--g3)"><em>🍎</em><b>סופרים</b><p>כבאיות, מחפרים, תפוחים ועוד 70 דברים. ניצוץ סופר בקול.</p></div>
+    <div class="game" style="background:var(--g2)"><em>🧩</em><b>מה לא שייך?</b><p>3 כלי רכב ופרי אחד: מי לא שייך?</p></div>
+    <div class="game" style="background:var(--g4);color:#2a0a00"><em>🎈</em><b>בלונים בצבעים</b><p>פוצצים רק את הבלונים בצבע שניצוץ ביקש.</p></div>
+    <div class="game" style="background:var(--g5)"><em>🃏</em><b>זיכרון</b><p>הופכים קלפים ומוצאים זוגות של תמונות.</p></div>
+  </div>
+  <div class="tip">🔊 בקרוב: "מי עושה את הקול?" עם קולות אמיתיים של חיות.</div>
+</section>
+
+<section id="fun" class="rv"><h2><i style="background:var(--g1)">🎉</i>לא רק לימודים: 5 עולמות חדשים <span class="new">חדש</span></h2>
+  <div class="card" style="margin-bottom:12px"><p>אצל הגדולים, המשחקים של הכיף מופיעים <b>ראשונים</b>, וחשבון וטבע אחריהם. ככה הילד מרגיש שהוא בא לשחק ולהצליח, ולא עוד שיעורי בית.</p></div>
+  <div class="games">
+    <div class="game" style="background:var(--g2)"><em>🧩</em><b>חשיבה</b><p>פאזל תמונה (שמים כל חלק במקום שלו), מצאו את ההבדלים, 🚂 רכבת הדפוסים (מה הקרון הבא?), וסודוקו קטן עם חיות.</p></div>
+    <div class="game" style="background:var(--g5)"><em>🧠</em><b>זיכרון וקשב</b><p>סיימון (צבעים וצלילים), איפה הכדור (כוסות מתערבבות), ומה השתנה בתמונות.</p></div>
+    <div class="game" style="background:var(--g3)"><em>💛</em><b>רגשות ורוגע</b><p>איך אני מרגיש/ה היום, בועת נשימה עם ניצוץ, איך הוא מרגיש (20 סיפורים), ומה כדאי לעשות (16 מצבים עם חברים ובבית).</p></div>
+    <div class="game" style="background:var(--g1)"><em>🎨</em><b>יצירה</b><p>6 דפי צביעה, מנדלה קסומה שמשתקפת לכל הצדדים, וגלריה של הציורים.</p></div>
+    <div class="game" style="background:var(--g4);color:#2a0a00"><em>🧸</em><b>משחקי הקטנים</b><p>כל 10 המשחקים של הקטנים, גם לגדולים. הכוכבים נשמרים אצל הגדול, וההתקדמות של הקטן לא משתנה.</p></div>
+  </div>
+  <div class="card" style="margin-top:12px"><ul style="margin:0 20px 0 0;display:grid;gap:6px">
+    <li>במשחקי החשיבה והזיכרון יש סבב של 5 דקות. הם נעשים קשים יותר לאט ככל שמצליחים.</li>
+    <li>"איך אני מרגיש/ה" נשמר, ובמדריך האישי של הילד יש חלק חדש: <b>💛 איך הוא הרגיש השבוע</b>, עם רעיון לשיחה.</li>
+    <li>הציורים נשמרים <b>רק בטלפון</b> (עד 12 לכל ילד). במצב ניסיון לא שומרים.</li>
+  </ul></div>
+</section>
+
+<section id="math" class="rv"><h2><i style="background:var(--g4)">🧮</i>חשבון: 8 משחקים</h2>
+  <div class="games">
+    <div class="game" style="background:var(--g1)"><em>🎈</em><b>בלונים</b><p>תשובות עפות על בלונים, ומפוצצים את הנכונה. אפשר לבחור מהירות.</p></div>
+    <div class="game" style="background:var(--g2)"><em>👆</em><b>נכון או לא?</b><p>כמו בטיקטוק: ימינה = נכון, שמאלה = לא נכון. אפשר גם ללחוץ על ✓ או ✗.</p></div>
+    <div class="game" style="background:var(--g3)"><em>🏎️</em><b>מרוץ</b><p>כל תשובה נכונה דוחפת את המכונית. ניצוץ נוסע בקצב שמתאים לילד.</p></div>
+    <div class="game" style="background:var(--g4);color:#2a0a00"><em>👑</em><b>מבחן המלך</b><p>בלי שעון. כותבים את התשובה לבד. 8 נכונות מתוך 10 = כתר!</p></div>
+    <div class="game" style="background:var(--g5)"><em>🃏</em><b>זוגות <span class="new">חדש</span></b><p>משחק זיכרון: הופכים קלפים ומוצאים לכל תרגיל (❓) את התשובה שלו (⭐). ניצוץ מקריא כל קלף.</p></div>
+    <div class="game" style="background:var(--g1)"><em>🧺</em><b>תופסים <span class="new">חדש</span></b><p>פירות עם מספרים נופלים. לוחצים על הטור כדי להזיז את הסל, ותופסים את התשובה הנכונה.</p></div>
+    <div class="game" style="background:var(--g3)"><em>🏪</em><b>חנות <span class="new">חדש</span></b><p>משלמים בדיוק במטבעות של 1, 2, 5 ו־10 ₪. כשהחיסור כבר הולך טוב, יש גם שאלות על עודף.</p></div>
+    <div class="game" style="background:var(--g2)"><em>🏝️</em><b>מסע באיים <span class="new">חדש</span></b><p>בלי שעון. כל תשובה נכונה מקדמת את הסירה לאי הבא, ובכל אי מחכה אוצר. מתאים לימים עייפים.</p></div>
+  </div>
+  <div class="card" style="margin-top:12px">
+    <p><b>איך המשחק מתאים את עצמו?</b></p>
+    <ul style="margin:8px 20px 0 0;display:grid;gap:6px">
+      <li><b>כל משחק נמשך 5 דקות ברצף</b>, עם פס זמן למעלה ומונה של תשובות נכונות ✓. התרגילים לא נגמרים: כל תרגיל נוצר מחדש. במרוץ מתחיל מרוץ חדש, בזוגות לוח חדש, ובמסע באיים מפה חדשה.</li>
+      <li>הוא שומר שהילד יצליח <b>בערך ב־8 מתוך 10</b>. כשקל מדי, המספרים גדלים. כשקשה, הם קטנים, בשקט.</li>
+      <li>מה שקשה לילד (למשל חיסור) <b>מופיע יותר</b>.</li>
+      <li>אחרי כל שני סבבים קופצת <b>🎁 הפתעה</b>: עובדה מעניינת, חידה או הפסקת תנועה, מנוקדת ועם קריינות.</li>
+    </ul>
+    <div class="tip">🎯 הטקסט שהילד צריך לקרוא אף פעם לא זז או קופץ. ככה קל יותר להתרכז.</div>
+  </div>
+</section>
+
+<section id="nature" class="rv"><h2><i style="background:var(--g3)">🌱</i>טבע: 4 משחקים <span class="new">חדש</span></h2>
+  <div class="games">
+    <div class="game" style="background:var(--g3)"><em>🦉</em><b>נכון או לא?</b><p>תמונה אמיתית ומשפט. מחליקים ימינה או שמאלה, ואחר כך מופיע הסבר קצר עם ניקוד.</p></div>
+    <div class="game" style="background:var(--g2)"><em>🕵️</em><b>מי אני?</b><p>חידה עם רמזים, אחד אחרי השני ("💡 עוד רמז"), ובוחרים את התמונה הנכונה.</p></div>
+    <div class="game" style="background:var(--g4);color:#2a0a00"><em>🗂️</em><b>לאיזו קבוצה?</b><p>יונק, עוף, דג, זוחל, חרק או דו־חי. מתחת לכל כפתור כתוב הכלל, למשל "שש רגליים".</p></div>
+    <div class="game" style="background:var(--g1)"><em>🦋</em><b>מה בא קודם?</b><p>מסדרים שלבים: זחל ← גולם ← פרפר, חיטה ← קמח ← בצק ← לחם, העונות והיום.</p></div>
+  </div>
+  <div class="card" style="margin-top:12px">
+    <ul style="margin:0 20px 0 0;display:grid;gap:6px">
+      <li><b>יותר מ־100 שאלות בכל משחק:</b> 111 משפטים של נכון או לא, 104 חידות (גם על פירות וכלי רכב), 106 בעלי חיים למיון, ו־101 סדרות של "מה בא קודם": מהקטן לגדול, ימי השבוע, החגים, חודשי השנה ושגרת הבוקר. משחק ממשיך מאיפה שעצרו, ומה שטעו בו חוזר.</li>
+      <li>אין לחץ של שעון על כל שאלה. אחרי כל טעות מופיע <b>💡 הסבר</b>, ולוחצים "הבא" רק אחרי שקוראים.</li>
+      <li>מה שהילד טעה בו <b>חוזר בסבב הבא</b>, עד שהוא יודע. בכל סבב יש גם דברים חדשים.</li>
+      <li>בכל משחק יש תמונות אמיתיות, ו<b>הטקסט מנוקד</b>. זה גם תרגול קריאה.</li>
+    </ul>
+    <div class="tip">🧭 במדריך האישי של הילד יש חלק חדש: <b>"🌱 על מה לדבר בטבע"</b>. שם רואים במה הילד טעה, ויש רעיון לשיחה או לטיול.</div>
+  </div>
+</section>
+
+<a class="go" href="../">🚀 כניסה לאפליקציה<small>כבר מותקן? לחצו כאן</small></a>
+
+<section id="parent" class="rv"><h2><i style="background:var(--g2)">👨‍👧</i>האזור של ההורה</h2>
+  <div class="card"><p>במסך הראשי לוחצים <b>👨‍👧 הורים</b> ופותרים את התרגיל. שם אפשר:</p>
+    <ol class="steps" style="margin-top:10px">
+      <li><div><b>✏️ לערוך ילד:</b> שם, תמונה, צבעים, או מחיקה.</div></li>
+      <li><div><b>⚙️ הגדרות:</b> סוגי תרגילים (חיבור, חיסור, כפל, חילוק, וגם כמה ביחד), עד איזה מספר, ומהירות הבלונים.</div></li>
+      <li><div><b>⏳ זמן משחק ביום:</b> כשהזמן נגמר, המשחק נסגר יפה עם "נתראה מחר!". הורה יכול לתת עוד 10 דקות.</div></li>
+      <li><div><b>🧪 לנסות כמו ילד:</b> במסך הראשי לוחצים <b>🧪 ניסיון</b> (או בתוך אזור ההורה), בוחרים גיל ומין (קטן או גדול) ומשחקים בכל המשחקים. למעלה מופיע "מצב ניסיון", ושום דבר לא נשמר. הכוכבים וההתקדמות של הילדים לא משתנים.</div></li>
+      <li><div><b>💌 משוב:</b> רעיון, תקלה או מחמאה, וזה מגיע ישר למוישי במייל.</div></li>
+    </ol>
+  </div>
+</section>
+
+<section id="news" class="rv"><h2><i style="background:var(--g4)">✨</i>מה חדש <span class="new">חדש</span></h2>
+  <div class="card"><p>אחרי כל עדכון של המשחק, <b>כשפותחים את האפליקציה</b>, קופץ פעם אחת <b>מסך מלא ונוצץ</b> עם מה שהשתנה, לפני "מי משחק היום?": כרטיס לכל חידוש, מחליקים או נוגעים בצד, ובסוף "🎉 זהו!". יש בו גם <b>🔊 ניצוץ מספר לילדים מה חדש</b>. לוחצים <b>👀 תראו לי</b> כדי לראות את הדבר החדש, או <b>הבנתי ✓</b>.</p>
+    <p style="margin-top:8px">ליד כל חידוש יש <b>👀 תראו לי</b>. אחרי שמסתכלים, הכפתור הצף <b>✨ חזרה למה חדש</b> מחזיר לרשימה, ומה שכבר ראיתם מסומן ב־✓ ירוק.</p>
+    <p style="margin-top:8px"><b>🧒 גם לילדים:</b> במסך של כל ילד, מעל המשחקים, יש כפתור <b>✨ מה חדש?</b>. כשיש משהו חדש בשבילו, הכפתור מנצנץ עם נקודה אדומה. בפנים מופיע רק מה שמתאים לגיל שלו, ניצוץ מקריא כל שורה ב־🔊, ו־<b>👀 תראו לי</b> לוקח ישר למשחק.</p>
+    <div class="tip">🧒 אם הדבר החדש שייך להורה, "👀 תראו לי" עובר קודם דרך קוד ההורה. כשילד באמצע משחק החלון לא קופץ, ובתוך משחק לא מופיע שום כפתור צף, כדי לא להפריע. כל העדכונים הקודמים נמצאים באזור ההורה ← <b>✨ מה חדש</b>.</div></div>
+</section>
+
+<section id="review" class="rv"><h2><i style="background:linear-gradient(135deg,#22C55E,#14B8A6)">🔁</i>סיור תיקונים <span class="new">חדש</span></h2>
+  <div class="card"><p>אחרי ששולחים הערות ואנחנו מתקנים אותן, מופיע כפתור ירוק <b>🔁 תיקונים</b> בפס של מצב ההדגמה, וגם <b>🔁 סיור תיקונים</b> באזור ההורה.</p>
+    <p style="margin-top:8px">הסיור עובר <b>רק על המסכים שתוקנו</b>. בכל מסך רואים את <b>📝 ההערה שלכם</b> מילה במילה, <b>✨ מה שינינו</b>, וכפתור <b>👀 איך זה היה לפני</b> עם צילום מסך. בכל מסך יש שדה <b>💬 הערה על התיקון הזה</b>, ושני כפתורים: <b>✅ מאשר</b> או <b>🔧 עוד לא טוב</b>. יוצאים באמצע? ההערות נשמרות, וממשיכים מאותו מקום. בסוף יש סיכום וכפתור <b>📤 שליחה</b>.</p>
+    <div class="tip">▾ הכרטיס גדול מדי? לוחצים על ▾ והוא מתקטן, כדי לראות את המסך שמאחוריו.</div></div>
+</section>
+
+<section id="showcase" class="rv"><h2><i style="background:var(--g5)">🎭</i>מצב הדגמה, סיור והערות <span class="new">חדש</span></h2>
+  <div class="card"><p>באזור ההורה ← <b>🎭 מצב הדגמה וסיור מודרך</b>.</p>
+    <ol class="steps" style="margin-top:10px">
+      <li><div>נכנסת <b>משפחה מדומה</b>: נועה (8) ואיתי (3.5), עם נתונים של כמה שבועות. כך כל מסך מלא, גם המדריך האישי.</div></li>
+      <li><div><b>🧭 סיור מודרך</b>: 59 שלבים, כל משחק וכל מסך של ההורה. "הבא ←" ו"→ הקודם", ו"☰ כל השלבים" כדי לקפוץ לשלב מסוים.</div></li>
+      <li><div><b>💬 הערה</b> בכל שלב: כותבים מה לתקן, והמקום נרשם לבד. ההערות נשמרות בטלפון עד שליחה. הכפתור 💬 מופיע גם <b>באזור ההורה</b> ובמצב <b>🧪 ניסיון</b>, אבל לא כשהילדים משחקים.</div></li>
+      <li><div>בסוף: <b>📤 שלח את כל ההערות</b> (מגיע במייל למוישי), או <b>📋 העתק</b> כדי להדביק בצ׳אט.</div></li>
+    </ol>
+    <div class="tip">🔒 בזמן ההדגמה <b>שום דבר לא נשמר</b>. ב"יציאה" (בפס הכתום למעלה) חוזרים לילדים האמיתיים, בלי שום שינוי.</div>
+  </div>
+</section>
+
+<section id="guide" class="rv"><h2><i style="background:var(--g3)">🧭</i>המדריך האישי להורה</h2>
+  <div class="card">
+    <p>ליד כל ילד יש כפתור <b>🧭 מדריך</b>. אחרי כמה סבבים מופיעים בו:</p>
+    <ul style="margin:8px 20px 0 0;display:grid;gap:6px">
+      <li><b>📊 מה מתחבר לילד:</b> באיזה משחק הוא מצליח, ולאיזה הוא חוזר.</li>
+      <li><b>🧑‍🏫 איך ללמוד איתו:</b> מתי הוא הכי מרוכז, ואחרי כמה דקות כדאי הפסקה.</li>
+      <li><b>💬 איך להסביר לו:</b> מה הכי קשה לו עכשיו, ודוגמה מהבית שמסבירה את זה.</li>
+      <li><b>🌱 על מה לדבר בטבע:</b> במה הוא טעה לאחרונה, ואיך לחקור את זה יחד.</li>
+    </ul>
+    <div class="tip">ℹ️ זו תמונה של מה שעובד אצל הילד, לא אבחון. ההמלצות מתעדכנות אחרי כל משחק.</div>
+  </div>
+</section>
+
+<section id="device" class="rv"><h2><i style="background:var(--g1)">🎤</i>בדיקת קריין וזיהוי קול</h2>
+  <div class="card"><p>באזור ההורה ← <b>🎤 בדיקת קריין וזיהוי קול</b>. שם:</p>
+    <ol class="steps" style="margin-top:10px">
+      <li><div>רואים אילו קולות עבריים יש בטלפון. הם משמשים רק כגיבוי, למשפט שעוד אין לו הקלטה.</div></li>
+      <li><div>בודקים אם הטלפון מזהה דיבור בעברית. זה חשוב לשלב הקריאה בקול, שיגיע בהמשך.</div></li>
+      <li><div>לוחצים <b>💌 לשלוח את התוצאות</b>, וככה מוישי יודע מה עובד אצלכם.</div></li>
+    </ol>
+    <div class="tip">💡 אם אין קול עברי באייפון: הגדרות ← נגישות ← תוכן מדובר ← קולות ← עברית ← מורידים קול.</div>
+  </div>
+</section>
+
+<section id="photos" class="rv"><h2><i style="background:var(--g2)">🖼️</i>התמונות</h2>
+  <div class="card"><p>כל התמונות (בערך 500) נמצאות <b>בתוך האפליקציה</b>, ולא נטענות מאתר אחר. ככה הן מופיעות מהר, וגם בלי אינטרנט: אחרי הפתיחה הראשונה הטלפון שומר אותן לבד.</p>
+    <div class="tip">📷 התמונות מוויקישיתוף, ברישיונות שימוש חופשיים. אם תמונה לא נטענת, מופיעה במקומה תמונה אחרת של אותו דבר.</div></div>
+</section>
+
+<section id="install" class="rv"><h2><i style="background:var(--g5)">📲</i>התקנה על הטלפון</h2>
+  <div class="card">
+    <p><b>🍎 באייפון (בספארי):</b> לוחצים על כפתור השיתוף <b>⬆️</b>, ובוחרים <b>"הוספה למסך הבית"</b>.</p>
+    <p style="margin-top:8px"><b>🤖 באנדרואיד (בכרום):</b> לוחצים במסך הראשי על <b>📲 התקנה</b>. אם הכפתור לא מופיע: <b>⋮</b> ← <b>"התקנת אפליקציה"</b> או "הוספה למסך הבית".</p>
+    <p style="margin-top:8px"><b>📦 נפתח מתוך וואטסאפ או אפליקציה אחרת?</b> משם אי אפשר להתקין. לוחצים <b>📲 התקנה</b>, ואז <b>"🌐 לפתוח ב־Chrome"</b>. אם זה לא נפתח: <b>"📋 להעתיק את הקישור"</b>, מדביקים בכרום, ומתקינים משם.</p>
+    <p style="margin-top:8px"><b>🔗 הכתובת:</b> <b dir="ltr">lomdimbekef.github.io</b></p>
+    <div class="tip">🔒 המידע על הילדים נשמר רק בטלפון הזה, בלי פרסומות. שימו לב: בכל טלפון ההתקדמות נפרדת.</div>
+  </div>
+</section>
+
+<a class="go" href="../">🚀 כניסה לאפליקציה<small>כבר מותקן? לחצו כאן</small></a>
+
+<section id="soon" class="rv"><h2><i style="background:var(--g4)">🚧</i>מה בדרך</h2>
+  <div class="card"><ul style="margin-right:20px;display:grid;gap:6px">
+    <li>📜 <b>תורה:</b> שיעורים, מילים ופסוקים עם ניקוד, והכנה למבחן</li>
+    <li>📖 <b>קריאה:</b> אצבע קוראת, קריאה בהד, וזיהוי קול</li>
+    <li>📚 <b>שיעורי בית ביחד:</b> טיימר, הפסקות תנועה ורשימת משימות</li>
+    <li>🔊 <b>לקטנים:</b> קולות אמיתיים של חיות, צורות ו"מה חסר בתמונה?"</li>
+    <li>🐣 ניצוץ שגדל, פרסים מההורה, נעילה בשבת ובחג, ועוד</li>
+  </ul></div>
+</section>
+<a class="go" href="../">🚀 כניסה לאפליקציה<small>כבר מותקן? לחצו כאן</small></a>
+<footer>לומדים בכיף ❤️ · מדריך, גרסה 1.32</footer>
+</div>
+<a class="gofab" id="gofab" href="../">🚀 כניסה לאפליקציה</a>
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+const fab=document.getElementById('gofab'),gos=[...document.querySelectorAll('.go')];
+const upd=()=>fab.classList.toggle('on',scrollY>500&&!gos.some(g=>{const r=g.getBoundingClientRect();return r.bottom>0&&r.top<innerHeight}));
+addEventListener('scroll',upd,{passive:true});
+</script>
+</body>
+</html>
